@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12">
+    <input type="text" id="question" name="question" value="" placeholder="Escriba la pregunta aquí">
+  </div>
+  <div class="col-12">
+    <div class="option" *ngFor="let option of options">
+      <input type="radio" name="option" value="{{ option.id }}" #opt> {{ option.label }}
+      <div class="buttons">
+        <button class="btn-edit" (click)="showModalRadioButton(option.id, option.label)">Editar</button>
+        <button class="btn-delete" (click)="deleteOption(option.id)">Eliminar</button>
+      </div>
+    </div>
+    <button class="btn-add" (click)="showModalRadioButton()">Agregar</button>
+  </div>
+</div>
+
+<div class="modal fade" id="{{ modalId }}" tabindex="-1" role="dialog" aria-labelledby="modalRadioButtonTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalRadioButtonTitle">{{ modalTitle }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="radiobutton-label" value="{{ optionLabel }}" id="{{ optionId }}" #radiobuttonLabel>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)"
+          *ngIf="editMode">Guardar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar
+          opci&oacute;n</button>
+      </div>
+    </div>
+  </div>
+</div>

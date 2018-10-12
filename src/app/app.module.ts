@@ -5,15 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PollContainerComponent } from './poll-container/poll-container.component';
 import { QuestionComponent } from './question/question.component';
+import { QuestionCheckboxesComponent } from './question-checkboxes/question-checkboxes.component';
+import { QuestionRadiobuttonsComponent } from './question-radiobuttons/question-radiobuttons.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PollContainerComponent,
-    QuestionComponent
+    QuestionComponent,
+    QuestionCheckboxesComponent,
+    QuestionRadiobuttonsComponent
   ],
   entryComponents: [
-    QuestionComponent
+    QuestionComponent,
+    QuestionCheckboxesComponent,
+    QuestionRadiobuttonsComponent
   ],
   imports: [
     BrowserModule,

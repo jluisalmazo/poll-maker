@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { QuestionComponent } from '../question/question.component';
+import { QuestionRadiobuttonsComponent } from '../question-radiobuttons/question-radiobuttons.component';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
  
@@ -15,6 +16,10 @@ export class PollContainerComponent implements OnInit {
 
   pollTitle = 'Título de la encuesta';
   pollDescription = '';
+
+
+  numQuestionRadiobuttons = 0;
+
 
   constructor(private resolver: ComponentFactoryResolver) { }
 
@@ -35,10 +40,22 @@ export class PollContainerComponent implements OnInit {
 
   } 
 
-  addQuestion() {
+  addQuestionText() {
 
-    const questionFactoryResolver = this.resolver.resolveComponentFactory(QuestionComponent);
-    this.questionsContainer.createComponent(questionFactoryResolver);
+    const factory = this.resolver.resolveComponentFactory(QuestionComponent);
+    this.questionsContainer.createComponent(factory);
+  }
+
+  addQuestionRadiobuttons() {
+
+    this.numQuestionRadiobuttons++;
+
+    const factory = this.resolver.resolveComponentFactory(QuestionRadiobuttonsComponent);
+    const component: ComponentRef<QuestionRadiobuttonsComponent> = this.questionsContainer.createComponent(factory);
+    component.instance.modalId = "questionRadiobuttons-" + this.numQuestionRadiobuttons;
+
+
+
   }
 
 }
