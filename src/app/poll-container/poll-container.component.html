@@ -1,15 +1,18 @@
-<div class=container>
-  <div class="row">
-    <div class="col">
+<div class="header">
+  <div class="container">
+    <div>
       <button (click)="addQuestionText()">Texto</button>
     </div>
-    <div class="col">
-      <button (click)="addQuestionRadiobuttons()">Casillas</button>
+    <div>
+      <button (click)="addQuestionRadiobuttons()">Casillas</button><span>({{ numQuestionRadiobuttons }})</span>
     </div>
-    <div class="col">
+    <div>
       <button (click)="addQuestionText()">Desplegable</button>
     </div>
   </div>
+</div>
+
+<div class="container poll">
   <div class="row">
     <div class="col poll-title">
       <div>
@@ -22,11 +25,26 @@
       </div>
     </div>
   </div>
+
   <div class="row poll-questions" #pollQuestionsContainer></div>
 </div>
 
 
-<div class="modal fade" id="modalEditTitle" tabindex="-1" role="dialog" aria-labelledby="editTitle" aria-hidden="true">
+<app-modal-window modalWindowId="editPollTitleAndDesc" title="Editar el título de la encuesta">
+  <div class="modal-body">
+    <input type="text" id="pollTitle" name="pollTitle" value="{{ pollTitle }}" placeholder="Escriba la pregunta aquí"
+      #pollTitleInput>
+    <textarea name="poll-description" placeholder="Descripción de la encuesta" #pollDescInput></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="editPollTitleAndDescription(pollTitleInput.value, pollDescInput.value)">Guardar
+      cambios</button>
+  </div>
+</app-modal-window>
+
+
+<!-- <div class="modal fade" id="modalEditTitle" tabindex="-1" role="dialog" aria-labelledby="editTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -45,4 +63,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

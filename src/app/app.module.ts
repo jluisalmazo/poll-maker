@@ -7,6 +7,7 @@ import { PollContainerComponent } from './poll-container/poll-container.componen
 import { QuestionComponent } from './question/question.component';
 import { QuestionCheckboxesComponent } from './question-checkboxes/question-checkboxes.component';
 import { QuestionRadiobuttonsComponent } from './question-radiobuttons/question-radiobuttons.component';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { QuestionRadiobuttonsComponent } from './question-radiobuttons/question-
     PollContainerComponent,
     QuestionComponent,
     QuestionCheckboxesComponent,
-    QuestionRadiobuttonsComponent
+    QuestionRadiobuttonsComponent,
+    ModalWindowComponent
   ],
   entryComponents: [
     QuestionComponent,

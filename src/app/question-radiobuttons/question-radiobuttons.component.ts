@@ -16,9 +16,12 @@ export class QuestionRadiobuttonsComponent implements OnInit {
     { id: 4, label: 'option 4' }
   ];
 
-  modalId  = '';
+  // These parameters are passed when the component is dinamically built.
+  questionModalId = '';
+  optionsModalId = '';
 
-  modalTitle = '';
+  question = 'Texto de la pregunta';
+  optionsModalTitle = '';
   editMode = false;
   addMode = false
   optionId = '';
@@ -37,7 +40,7 @@ export class QuestionRadiobuttonsComponent implements OnInit {
       this.addMode = false;
       this.optionId = id;
       this.optionLabel = label;
-      this.modalTitle = 'Editar opción';
+      this.optionsModalTitle = 'Editar opción';
 
     } else {
 
@@ -46,9 +49,9 @@ export class QuestionRadiobuttonsComponent implements OnInit {
       this.editMode = false;
       this.optionId = '';
       this.optionLabel = '';
-      this.modalTitle = 'Agregar nueva opción';
+      this.optionsModalTitle = 'Agregar nueva opción';
     }
-    $('#' + this.modalId).modal('show');
+    $('#' + this.optionsModalId).modal('show');
   }
 
   addRadiobutton(label) {
@@ -58,14 +61,14 @@ export class QuestionRadiobuttonsComponent implements OnInit {
       newId = this.options[this.options.length - 1].id + 1;
     }
     this.options.push({ 'id': newId, 'label': label });
-    $('#' + this.modalId).modal('hide');
+    $('#' + this.optionsModalId).modal('hide');
     this.addMode = false;
   }
 
   editRadiobutton(id, label) {
 
     this.findAndReplace(this.options, id, label);
-    $('#' + this.modalId).modal('hide');
+    $('#' + this.optionsModalId).modal('hide');
     this.editMode = false;
   }
 
@@ -83,5 +86,14 @@ export class QuestionRadiobuttonsComponent implements OnInit {
     if (index > -1) {
        this.options.splice(index, 1);
     }   
+  }
+
+  showModalEditQuestion() {
+    $('#' + this.questionModalId).modal('show');
+  }
+
+  saveQuestionChanges(question) {
+    this.question = question;
+    $('#' + this.questionModalId).modal('hide');
   }
 }

@@ -3,8 +3,42 @@
 :host {
   display: block;
 
+
+  .header {
+    padding-top: 80px;
+    padding-bottom: 150px;
+    background-color: get-color(primary-color-1);
+
+    .container {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      align-items: center;
+      font-size: get-rem(_22px);
+      font-weight: normal;
+      color: get-color(primary-color-2);
+
+      button {
+        font-size: get-rem(_22px);
+        font-weight: normal;
+        color: get-color(primary-color-2);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+  }
+
   .container {
-    border: 1px solid orange;
+    // border: 1px solid orange;
+
+    &.poll {
+      box-shadow: $shadow;
+      min-height: 100vh;
+      margin-top: -130px;
+      background-color: get-color(primary-color-2);
+    }
 
     .poll-title {
       font-size: get-rem(_24px);
@@ -23,11 +57,11 @@
           cursor: pointer;
           outline: none;
         }
-  
-        &:hover > .btn-edit {
+
+        &:hover>.btn-edit {
           display: inline-flex;
         }
-      }      
+      }
     }
 
     .poll-questions {
@@ -36,24 +70,27 @@
     }
   }
 
+  & ::ng-deep {
 
-  #modalEditTitle {
-    .modal-dialog {
-      .modal-content {
-        .modal-header {
-          .modal-title {
-            font-size: get-rem(_28px);
-            font-weight: normal;
-            color: get-color(primary-color-1);
+    .modal {
+      .modal-dialog {
+        .modal-content {
+
+          .modal-header {
+            .modal-title {
+              font-size: get-rem(_28px);
+              font-weight: normal;
+              color: get-color(primary-color-1);
+            }
           }
-        }
 
-        .modal-body {
+          .modal-body {
 
-          input,
-          textarea {
-            width: 100%;
-            margin-bottom: 20px;
+            input,
+            textarea {
+              width: 100%;
+              margin-bottom: 20px;
+            }
           }
         }
       }

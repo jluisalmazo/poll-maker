@@ -28,16 +28,15 @@ export class PollContainerComponent implements OnInit {
 
   showModalEditTitle() {
 
-    $('#modalEditTitle').modal('show');
+    $('#editPollTitleAndDesc').modal('show');
   }
 
-  editTitleAndDescription(title, desc) {
+  editPollTitleAndDescription(title, desc) {
 
     this.pollTitle = title;
     this.pollDescription = desc;
 
-    $('#modalEditTitle').modal('hide');
-
+    $('#editPollTitleAndDesc').modal('hide');
   } 
 
   addQuestionText() {
@@ -52,10 +51,8 @@ export class PollContainerComponent implements OnInit {
 
     const factory = this.resolver.resolveComponentFactory(QuestionRadiobuttonsComponent);
     const component: ComponentRef<QuestionRadiobuttonsComponent> = this.questionsContainer.createComponent(factory);
-    component.instance.modalId = "questionRadiobuttons-" + this.numQuestionRadiobuttons;
-
-
-
+    component.instance.questionModalId = "questionModal-" + this.numQuestionRadiobuttons;
+    component.instance.optionsModalId = "optionsModal-" + this.numQuestionRadiobuttons;
   }
 
 }

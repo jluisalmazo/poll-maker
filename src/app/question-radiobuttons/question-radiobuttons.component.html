@@ -1,6 +1,7 @@
 <div class="row">
-  <div class="col-12">
-    <input type="text" id="question" name="question" value="" placeholder="Escriba la pregunta aquí">
+  <div class="col-12 question">
+    {{ question }}
+    <button class="btn-edit" (click)="showModalEditQuestion()">Editar</button>
   </div>
   <div class="col-12">
     <div class="option" *ngFor="let option of options">
@@ -14,26 +15,24 @@
   </div>
 </div>
 
-<div class="modal fade" id="{{ modalId }}" tabindex="-1" role="dialog" aria-labelledby="modalRadioButtonTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRadioButtonTitle">{{ modalTitle }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input type="text" name="radiobutton-label" value="{{ optionLabel }}" id="{{ optionId }}" #radiobuttonLabel>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)"
-          *ngIf="editMode">Guardar cambios</button>
-        <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar
-          opci&oacute;n</button>
-      </div>
-    </div>
+<app-modal-window modalWindowId="{{ questionModalId }}" title="Editar pregunta">
+  <div class="modal-body">
+    <input type="text" id="question" name="question" value="{{ question }}" placeholder="Escriba la pregunta aquí" #questionInput>
   </div>
-</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="saveQuestionChanges(questionInput.value)">Guardar cambios</button>
+  </div>
+</app-modal-window>
+
+<app-modal-window modalWindowId="{{ optionsModalId }}" title="{{ optionsModalTitle }}">
+  <div class="modal-body">
+    <input type="text" name="radiobutton-label" value="{{ optionLabel }}" id="{{ optionId }}" placeholder= "Nombre de la opción" #radiobuttonLabel>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)"
+      *ngIf="editMode">Guardar cambios</button>
+    <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar opci&oacute;n</button>
+  </div>
+</app-modal-window>

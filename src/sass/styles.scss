@@ -9,8 +9,22 @@
 // @import '~@ngx-share/button/styles/share-buttons';
 // @import '~@ngx-share/button/styles/themes/default/default-theme';
 
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: get-rem(_16px);
-    font-weight: normal;
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: get-rem(_16px);
+  font-weight: normal;
+  background-color: get-color(primary-color-6);
+
+  .question {
+    margin-bottom: 10px;
+    border: 1px solid magenta;
+
+    .btn-edit {
+      display: none;
+    }
+
+    &:hover>.btn-edit {
+      display: inline-flex;
+    }
+  }
 }
