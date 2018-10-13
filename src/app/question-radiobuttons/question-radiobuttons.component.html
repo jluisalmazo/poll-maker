@@ -4,7 +4,7 @@
       <span>{{ question }}</span>
       <div class="buttons">
         <button class="btn-bg-img btn-edit" (click)="showModalEditQuestion()"></button>
-        <button class="btn-bg-img btn-delete" (click)="showModalDeleteOption(option.id, option.label)"></button>
+        <button class="btn-bg-img btn-delete" (click)="showModalRemoveQuestion()"></button>
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@
   </div>
 </app-modal-window>
 
-<app-modal-window modalWindowId="{{ deleteOptionModalId }}" title="¿Está seguro que desea eliminar esta opción?">
+<app-modal-window modalWindowId="{{ deleteOptionModalId }}" title="¿Está segur@ que desea eliminar esta opción?">
   <div class="modal-body">
     {{ optionLabel }}
   </div>
@@ -54,3 +54,14 @@
     <button type="button" class="btn btn-primary" (click)="deleteOption(optionId)">Eliminar opci&oacute;n</button>
   </div>
 </app-modal-window>
+
+<app-modal-window modalWindowId="{{ removeQuestionModalId }}" title="¿Está segur@ que desea eliminar esta pregunta?">
+    <div class="modal-body">
+    {{ question }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="removeMe(index)">Eliminar pregunta</button>
+  </div>
+</app-modal-window>
+  

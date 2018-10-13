@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
 
+//interface for Parent-Child interaction.
+export interface myinterface {
+  removeInstance(index: number);
+}
+
 @Component({
   selector: 'app-question-radiobuttons',
   templateUrl: './question-radiobuttons.component.html',
@@ -10,21 +15,28 @@ import 'bootstrap/js/dist/modal';
 export class QuestionRadiobuttonsComponent implements OnInit {
 
   options = [
-    { id: 1, label: 'opción ejemplo 1' },
-    { id: 2, label: 'opción ejemplo 2' }
+    { id: 1, label: 'Opción ejemplo 1' },
+    { id: 2, label: 'Opción ejemplo 2' }
   ];
 
   // These parameters are passed when the component is dinamically built.
-  questionModalId = '';
-  optionsModalId = '';
-  deleteOptionModalId = '';
+  public questionModalId = '';
+  public optionsModalId = '';
+  public deleteOptionModalId = '';
+  public removeQuestionModalId = '';
 
-  question = 'Texto de la pregunta';
-  optionsModalTitle = '';
-  editMode = false;
-  addMode = false
-  optionId = '';
-  optionLabel = '';
+  public question = 'Texto de la pregunta';
+  public optionsModalTitle = '';
+  public editMode = false;
+  public addMode = false
+  public optionId = '';
+  public optionLabel = '';
+
+  // This parameters are for removing the instance of this component.
+  public index: number;
+  public selfRef: QuestionRadiobuttonsComponent;
+  public compInteraction: myinterface;   // interface for Parent-Child interaction.
+  
 
   constructor() {}
 
@@ -107,4 +119,15 @@ export class QuestionRadiobuttonsComponent implements OnInit {
     $('#' + this.questionModalId).modal('hide');
   }
 
+  showModalRemoveQuestion() {
+
+    $('#' + this.removeQuestionModalId).modal('show');
+  }
+
+  removeMe(index) {
+
+    $('#' + this.removeQuestionModalId).modal('hide');
+    this.compInteraction.removeInstance(index);
+  }
+  
 }
