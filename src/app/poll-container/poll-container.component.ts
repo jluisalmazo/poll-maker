@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { QuestionComponent } from '../question/question.component';
-import { QuestionRadiobuttonsComponent } from '../question-radiobuttons/question-radiobuttons.component';
+import { QuestionCheckboxesComponent } from '../question-checkboxes/question-checkboxes.component';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
 
@@ -55,8 +55,8 @@ export class PollContainerComponent implements OnInit {
 
     this.numQuestionRadiobuttons++;
 
-    let factory = this.resolver.resolveComponentFactory(QuestionRadiobuttonsComponent);
-    let component: ComponentRef<QuestionRadiobuttonsComponent> = this.questionsContainer.createComponent(factory);
+    let factory = this.resolver.resolveComponentFactory(QuestionCheckboxesComponent);
+    let component: ComponentRef<QuestionCheckboxesComponent> = this.questionsContainer.createComponent(factory);
 
     component.instance.questionModalId = "questionModal-" + this.numQuestionRadiobuttons;
     component.instance.optionsModalId = "optionsModal-" + this.numQuestionRadiobuttons;
@@ -80,7 +80,7 @@ export class PollContainerComponent implements OnInit {
     }
 
     let componentRef = this.componentsReferences.filter(x => x.instance.index == index)[0];
-    let component: QuestionRadiobuttonsComponent = <QuestionRadiobuttonsComponent>componentRef.instance;
+    let component: QuestionCheckboxesComponent = <QuestionCheckboxesComponent>componentRef.instance;
 
     let vcrIndex: number = this.questionsContainer.indexOf(componentRef)
 

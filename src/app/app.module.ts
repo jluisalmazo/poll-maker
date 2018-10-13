@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { PollContainerComponent } from './poll-container/poll-container.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionCheckboxesComponent } from './question-checkboxes/question-checkboxes.component';
-import { QuestionRadiobuttonsComponent } from './question-radiobuttons/question-radiobuttons.component';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
+import { QuestionSelectComponent } from './question-select/question-select.component';
 
 @NgModule({
   declarations: [
@@ -15,13 +15,12 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
     PollContainerComponent,
     QuestionComponent,
     QuestionCheckboxesComponent,
-    QuestionRadiobuttonsComponent,
-    ModalWindowComponent
+    ModalWindowComponent,
+    QuestionSelectComponent
   ],
   entryComponents: [
     QuestionComponent,
     QuestionCheckboxesComponent,
-    QuestionRadiobuttonsComponent
   ],
   imports: [
     BrowserModule,
