@@ -8,6 +8,7 @@ import { QuestionComponent } from './question/question.component';
 import { QuestionCheckboxesComponent } from './question-checkboxes/question-checkboxes.component';
 import { ModalWindowComponent } from './modal-window/modal-window.component';
 import { QuestionSelectComponent } from './question-select/question-select.component';
+import { ModeService } from './mode.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { QuestionSelectComponent } from './question-select/question-select.compo
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ModeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModeService } from '../mode.service';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
 
@@ -38,7 +39,7 @@ export class QuestionCheckboxesComponent implements OnInit {
   public compInteraction: myinterface;   // interface for Parent-Child interaction.
   
 
-  constructor() {}
+  constructor(private readonly appMode: ModeService) {}
 
   ngOnInit() {}
   

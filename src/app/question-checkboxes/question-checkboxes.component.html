@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="question admin-buttons">
       <span>{{ question }}</span>
-      <div class="buttons">
+      <div class="buttons" *ngIf="!appMode.preview">
         <button class="btn-bg-img btn-edit" (click)="showModalEditQuestion()"></button>
         <button class="btn-bg-img btn-delete" (click)="showModalRemoveQuestion()"></button>
       </div>
@@ -13,12 +13,12 @@
       <div class="input-wrapper">
         <input type="checkbox" name="option" value="{{ option.id }}" #opt><span>{{ option.label }}</span>
       </div>
-      <div class="buttons">
+      <div class="buttons" *ngIf="!appMode.preview">
         <button class="btn-bg-img btn-edit" (click)="showModalRadioButton(option.id, option.label)"></button>
         <button class="btn-bg-img btn-delete" (click)="showModalDeleteOption(option.id, option.label)"></button>
       </div>
     </div>
-    <button class="btn-bg-img btn-add" (click)="showModalRadioButton()"></button>
+    <button class="btn-bg-img btn-add" (click)="showModalRadioButton()" *ngIf="!appMode.preview"></button>
   </div>
 </div>
 

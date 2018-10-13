@@ -3,6 +3,8 @@ import { QuestionComponent } from '../question/question.component';
 import { QuestionCheckboxesComponent } from '../question-checkboxes/question-checkboxes.component';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
+import { AppModule } from '../app.module';
+import { ModeService } from '../mode.service';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class PollContainerComponent implements OnInit {
   public numQuestionRadiobuttons = 0;
 
 
-  constructor(private resolver: ComponentFactoryResolver) { }
+  constructor(private resolver: ComponentFactoryResolver, private appMode: ModeService) { }
 
   ngOnInit() {
   }
@@ -88,6 +90,20 @@ export class PollContainerComponent implements OnInit {
     this.questionsContainer.remove(vcrIndex);
 
     this.componentsReferences = this.componentsReferences.filter(x => x.instance.index !== index);
+  }
+
+  displayAllContent(){
+    // console.log(this);
+    console.log(this.componentsReferences);
+  }
+
+
+  /**
+   * Changes the mode of the webapp from design to preview an viceversa.
+   */
+  toggleAppMode() {
+
+    this.appMode.preview = !this.appMode.preview;
   }
 
 }
