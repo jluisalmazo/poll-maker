@@ -15,26 +15,25 @@
 <div class="container poll">
   <div class="row">
     <div class="col poll-title">
-      <div>
-        {{ pollTitle }}
-        <button class="btn-edit" (click)="showModalEditTitle()">Editar</button>
-        <!-- <button class="btn-edit" data-toggle="modal" data-target="#modalEditTitle">Editar</button> -->
-      </div>
-      <div>
-        {{ pollDescription }}
-      </div>
+      {{ pollTitle }}
+      <button class="btn-bg-img btn-edit" (click)="showModalEditTitle()"></button>
     </div>
   </div>
-
-  <div class="row poll-questions" #pollQuestionsContainer></div>
+  <div class="row">
+    <div class="col poll-desc">
+      {{ pollDescription }}
+    </div>
+  </div>
+  <!-- <div class="row"> -->
+  <div class="poll-questions" #pollQuestionsContainer></div>
+  <!-- </div> -->
 </div>
-
 
 <app-modal-window modalWindowId="editPollTitleAndDesc" title="Editar el título de la encuesta">
   <div class="modal-body">
-    <input type="text" id="pollTitle" name="pollTitle" value="{{ pollTitle }}" placeholder="Escriba la pregunta aquí"
+    <input type="text" id="pollTitle" name="pollTitle" value="{{ pollTitle }}" placeholder="Escriba el título aquí"
       #pollTitleInput>
-    <textarea name="poll-description" placeholder="Descripción de la encuesta" #pollDescInput></textarea>
+    <textarea name="poll-description" placeholder="Descripción de la encuesta" #pollDescInput>{{ pollDescription }}</textarea>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -42,25 +41,3 @@
       cambios</button>
   </div>
 </app-modal-window>
-
-
-<!-- <div class="modal fade" id="modalEditTitle" tabindex="-1" role="dialog" aria-labelledby="editTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editTitle"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <input type="text" name="poll-title" value="{{ pollTitle }}" #pollTitleEdited >
-        <textarea name="poll-description" placeholder="Descripción de la encuesta" #pollDescEdited ></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="editTitleAndDescription(pollTitleEdited.value, pollDescEdited.value)">Guardar cambios</button>
-      </div>
-    </div>
-  </div>
-</div> -->

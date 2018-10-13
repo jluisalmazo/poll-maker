@@ -6,8 +6,6 @@
 @import "~bootstrap/scss/print";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/grid";
-// @import '~@ngx-share/button/styles/share-buttons';
-// @import '~@ngx-share/button/styles/themes/default/default-theme';
 
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -15,16 +13,25 @@ body {
   font-weight: normal;
   background-color: get-color(primary-color-6);
 
-  .question {
-    margin-bottom: 10px;
-    border: 1px solid magenta;
 
-    .btn-edit {
-      display: none;
-    }
+  .btn-bg-img {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-origin: center center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
 
-    &:hover>.btn-edit {
-      display: inline-flex;
-    }
+  .btn-edit {
+    background-image: url(/src/assets/icons/btn-edit.png);
+  }
+
+  .btn-add {
+    background-image: url(/src/assets/icons/btn-add.png);
+  }
+
+  .btn-delete {
+    background-image: url(/src/assets/icons/btn-delete.png);
   }
 }

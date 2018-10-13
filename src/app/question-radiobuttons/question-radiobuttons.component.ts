@@ -10,15 +10,14 @@ import 'bootstrap/js/dist/modal';
 export class QuestionRadiobuttonsComponent implements OnInit {
 
   options = [
-    { id: 1, label: 'option 1' },
-    { id: 2, label: 'option 2' },
-    { id: 3, label: 'option 3' },
-    { id: 4, label: 'option 4' }
+    { id: 1, label: 'opción ejemplo 1' },
+    { id: 2, label: 'opción ejemplo 2' }
   ];
 
   // These parameters are passed when the component is dinamically built.
   questionModalId = '';
   optionsModalId = '';
+  deleteOptionModalId = '';
 
   question = 'Texto de la pregunta';
   optionsModalTitle = '';
@@ -73,6 +72,7 @@ export class QuestionRadiobuttonsComponent implements OnInit {
   }
 
   findAndReplace(object, id, label) {
+
     object.map(function (a) {
       if (a.id == id) {
         a.label = label
@@ -80,20 +80,31 @@ export class QuestionRadiobuttonsComponent implements OnInit {
     })
   } 
 
+  showModalDeleteOption(id, label) {
+
+    this.optionId = id;
+    this.optionLabel = label;
+    $('#' + this.deleteOptionModalId).modal('show');
+  }
+
   deleteOption(id) {
 
     const index = this.options.findIndex(function (arr) { return Number(arr.id) === Number(id) });  
     if (index > -1) {
        this.options.splice(index, 1);
-    }   
+    }
+    $('#' + this.deleteOptionModalId).modal('hide');   
   }
 
   showModalEditQuestion() {
+
     $('#' + this.questionModalId).modal('show');
   }
 
   saveQuestionChanges(question) {
+
     this.question = question;
     $('#' + this.questionModalId).modal('hide');
   }
+
 }

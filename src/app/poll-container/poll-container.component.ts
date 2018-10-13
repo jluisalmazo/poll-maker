@@ -15,7 +15,7 @@ export class PollContainerComponent implements OnInit {
   @ViewChild('pollQuestionsContainer', {read: ViewContainerRef}) questionsContainer;
 
   pollTitle = 'Título de la encuesta';
-  pollDescription = '';
+  pollDescription = 'Descripción de la encuesta';
 
 
   numQuestionRadiobuttons = 0;
@@ -53,6 +53,8 @@ export class PollContainerComponent implements OnInit {
     const component: ComponentRef<QuestionRadiobuttonsComponent> = this.questionsContainer.createComponent(factory);
     component.instance.questionModalId = "questionModal-" + this.numQuestionRadiobuttons;
     component.instance.optionsModalId = "optionsModal-" + this.numQuestionRadiobuttons;
+    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.numQuestionRadiobuttons;
+
   }
 
 }

@@ -3,26 +3,72 @@
 :host {
   display: block;
   margin-bottom: 30px;
-  border: 1px solid darkgreen;
 
-  input[type=text],
-  textarea {
-    width: 100%;
-    margin-bottom: 20px;
-    border-bottom: 1px solid get-color(primary-color-4);
+  .input-wrapper {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    input[type=radio] {
+      appearance: none;
+      width: auto;
+      background-color: get-color(primary-color-1);
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      outline: none;
+
+      &:checked:after {
+        content: '\2714';
+        position: absolute;
+        font-size: 14px;
+        line-height: 14px;
+        color: get-color(primary-color-2);
+      }
+    }
+  }
+
+  .question {
+    font-size: get-rem(_18px);
+    font-weight: lighter;
+    margin-bottom: 30px;
+
+    span {
+      padding-bottom: 8px;
+      border-bottom: 1px solid get-color(primary-color-5);
+    }
   }
 
   .option {
     margin-bottom: 10px;
-    border: 1px solid yellow;
+  }
 
+  .admin-buttons {
     .buttons {
       display: none;
+      margin-left: 25px;
     }
 
     &:hover>.buttons {
       display: inline-flex;
+      margin-top: -3px;
+      position: absolute;
+
+      .btn-edit,
+      .btn-delete {
+        width: 35px;
+        height: 35px;
+      }
     }
+  }
+
+  .btn-add {
+    width: 45px;
+    height: 45px;
   }
 
 }

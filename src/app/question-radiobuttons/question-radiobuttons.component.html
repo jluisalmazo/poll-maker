@@ -1,23 +1,31 @@
 <div class="row">
-  <div class="col-12 question">
-    {{ question }}
-    <button class="btn-edit" (click)="showModalEditQuestion()">Editar</button>
-  </div>
   <div class="col-12">
-    <div class="option" *ngFor="let option of options">
-      <input type="radio" name="option" value="{{ option.id }}" #opt> {{ option.label }}
+    <div class="question admin-buttons">
+      <span>{{ question }}</span>
       <div class="buttons">
-        <button class="btn-edit" (click)="showModalRadioButton(option.id, option.label)">Editar</button>
-        <button class="btn-delete" (click)="deleteOption(option.id)">Eliminar</button>
+        <button class="btn-bg-img btn-edit" (click)="showModalEditQuestion()"></button>
+        <button class="btn-bg-img btn-delete" (click)="showModalDeleteOption(option.id, option.label)"></button>
       </div>
     </div>
-    <button class="btn-add" (click)="showModalRadioButton()">Agregar</button>
+  </div>
+  <div class="col-12">
+    <div class="option admin-buttons" *ngFor="let option of options">
+      <div class="input-wrapper">
+        <input type="radio" name="option" value="{{ option.id }}" #opt><span>{{ option.label }}</span>
+      </div>
+      <div class="buttons">
+        <button class="btn-bg-img btn-edit" (click)="showModalRadioButton(option.id, option.label)"></button>
+        <button class="btn-bg-img btn-delete" (click)="showModalDeleteOption(option.id, option.label)"></button>
+      </div>
+    </div>
+    <button class="btn-bg-img btn-add" (click)="showModalRadioButton()"></button>
   </div>
 </div>
 
 <app-modal-window modalWindowId="{{ questionModalId }}" title="Editar pregunta">
   <div class="modal-body">
-    <input type="text" id="question" name="question" value="{{ question }}" placeholder="Escriba la pregunta aquí" #questionInput>
+    <input type="text" id="question" name="question" value="{{ question }}" placeholder="Escriba la pregunta aquí"
+      #questionInput>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -27,12 +35,22 @@
 
 <app-modal-window modalWindowId="{{ optionsModalId }}" title="{{ optionsModalTitle }}">
   <div class="modal-body">
-    <input type="text" name="radiobutton-label" value="{{ optionLabel }}" id="{{ optionId }}" placeholder= "Nombre de la opción" #radiobuttonLabel>
+    <input type="text" name="radiobutton-label" value="{{ optionLabel }}" id="{{ optionId }}" placeholder="Nombre de la opción"
+      #radiobuttonLabel>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)"
-      *ngIf="editMode">Guardar cambios</button>
+    <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)" *ngIf="editMode">Guardar cambios</button>
     <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar opci&oacute;n</button>
+  </div>
+</app-modal-window>
+
+<app-modal-window modalWindowId="{{ deleteOptionModalId }}" title="¿Está seguro que desea eliminar esta opción?">
+  <div class="modal-body">
+    {{ optionLabel }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="deleteOption(optionId)">Eliminar opci&oacute;n</button>
   </div>
 </app-modal-window>
