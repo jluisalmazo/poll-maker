@@ -5,7 +5,7 @@ $color-palette: (
   primary-color-4: rgb(111, 119, 121),
   primary-color-5: rgb(204, 204, 204),
   primary-color-6: rgb(246, 246, 246),
-  secondary-color-1: rgb(0, 153, 51)
+  secondary-color-1: rgb(49, 124, 238)
 );
 
 @function get-color($color-name, $alpha: 1) {

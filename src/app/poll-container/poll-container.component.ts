@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { QuestionTextComponent } from '../question-text/question-text.component';
 import { QuestionCheckboxesComponent } from '../question-checkboxes/question-checkboxes.component';
 import { QuestionSelectComponent } from '../question-select/question-select.component';
@@ -12,28 +12,25 @@ import 'bootstrap/js/dist/modal';
   templateUrl: './poll-container.component.html',
   styleUrls: ['./poll-container.component.scss']
 })
-export class PollContainerComponent implements OnInit {
+export class PollContainerComponent {
 
   @ViewChild('pollQuestionsContainer', { read: ViewContainerRef }) questionsContainer;
 
-  // manually indexing the child components for better removal
-  // although there is by-default indexing but it is being avoid for now
-  // so index is a unique property here to identify each component individually.
+  // Manually indexing the child components for better removal.
+  // This index is the unique property to identify each component individually.
   index: number = 0;
-  // to store references of dynamically created components.
+  // To store references of dynamically created components.
   componentsReferences = [];
 
-
+  // Component's general variables.
   public pollTitle = 'Título de la encuesta';
   public pollDescription = 'Descripción de la encuesta';
   public counterQuestionText = 0
   public counterQuestionCheckboxes = 0;
   public counterQuestionSelect = 0;
+  public btnTextToggleMode = 'Ver como usuario';
 
   constructor(private resolver: ComponentFactoryResolver, private appMode: ModeService) { }
-
-  ngOnInit() {
-  }
 
   showModalEditTitle() {
 
@@ -48,6 +45,9 @@ export class PollContainerComponent implements OnInit {
     $('#editPollTitleAndDesc').modal('hide');
   }
 
+  /**
+   * Add a question of type text into container of questions.
+   */
   addQuestionText() {
 
     this.counterQuestionText++;
@@ -55,8 +55,8 @@ export class PollContainerComponent implements OnInit {
     const factory = this.resolver.resolveComponentFactory(QuestionTextComponent);    
     const component: ComponentRef<QuestionTextComponent> = this.questionsContainer.createComponent(factory);
 
-    component.instance.questionModalId = "questionModal-" + this.counterQuestionText;
-    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.counterQuestionText;
+    component.instance.questionModalId = "questTextModal-" + this.counterQuestionText;
+    component.instance.removeQuestionModalId = "removeQuestTextModal-" + this.counterQuestionText;
 
     component.instance.selfRef = component.instance;
     component.instance.index = ++this.index;
@@ -69,17 +69,20 @@ export class PollContainerComponent implements OnInit {
 
   }
 
-  addQuestionRadiobuttons() {
+  /**
+   * Add a question of type Checkboxes into container of questions.
+   */
+  addQuestionCheckboxes() {
 
     this.counterQuestionCheckboxes++;
 
     const factory = this.resolver.resolveComponentFactory(QuestionCheckboxesComponent);
     const component: ComponentRef<QuestionCheckboxesComponent> = this.questionsContainer.createComponent(factory);
 
-    component.instance.questionModalId = "questionModal-" + this.counterQuestionCheckboxes;
-    component.instance.optionsModalId = "optionsModal-" + this.counterQuestionCheckboxes;
-    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.counterQuestionCheckboxes;
-    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.counterQuestionCheckboxes;
+    component.instance.questionModalId = "questCheckbxModal-" + this.counterQuestionCheckboxes;
+    component.instance.optionsModalId = "questCheckbxEditOptModal-" + this.counterQuestionCheckboxes;
+    component.instance.deleteOptionModalId = "questCheckbxDeleteOptModal-" + this.counterQuestionCheckboxes;
+    component.instance.removeQuestionModalId = "removeQuestCheckbxModal-" + this.counterQuestionCheckboxes;
 
     component.instance.selfRef = component.instance;
     component.instance.index = ++this.index;
@@ -91,6 +94,9 @@ export class PollContainerComponent implements OnInit {
     this.componentsReferences.push(component);
   }
 
+  /**
+   * Add a question of type select into container of questions.
+   */
   addQuestionSelect() {
 
     this.counterQuestionSelect++;
@@ -98,10 +104,10 @@ export class PollContainerComponent implements OnInit {
     const factory = this.resolver.resolveComponentFactory(QuestionSelectComponent);
     const component: ComponentRef<QuestionSelectComponent> = this.questionsContainer.createComponent(factory);
 
-    component.instance.questionModalId = "questionModal-" + this.counterQuestionSelect;
-    component.instance.optionsModalId = "optionsModal-" + this.counterQuestionSelect;
-    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.counterQuestionSelect;
-    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.counterQuestionSelect;
+    component.instance.questionModalId = "questSelectModal-" + this.counterQuestionSelect;
+    component.instance.optionsModalId = "questSelectEditOptionModal-" + this.counterQuestionSelect;
+    component.instance.deleteOptionModalId = "questSelectDeleteOptionModal-" + this.counterQuestionSelect;
+    component.instance.removeQuestionModalId = "removeQuestSelectModal-" + this.counterQuestionSelect;
 
     component.instance.selfRef = component.instance;
     component.instance.index = ++this.index;
@@ -113,6 +119,9 @@ export class PollContainerComponent implements OnInit {
     this.componentsReferences.push(component);
   }
 
+  /**
+   * Removes the instance of the question identified by index, from the container of questions.
+   */
   removeInstance(index: number) {
 
     if (this.questionsContainer.length < 1) {
@@ -120,10 +129,6 @@ export class PollContainerComponent implements OnInit {
     }
 
     let componentRef = this.componentsReferences.filter(x => x.instance.index == index)[0];
-
-    // if(componentRef.instance instanceof QuestionCheckboxesComponent){
-    //   alert("acabo de eliminar un componente del tipo checkboxes");
-    // }
 
     // Drecreasing counter for type of question.
     switch(componentRef.instance.constructor){
@@ -155,6 +160,12 @@ export class PollContainerComponent implements OnInit {
   toggleAppMode() {
 
     this.appMode.preview = !this.appMode.preview;
+
+    if(this.appMode.preview) {
+      this.btnTextToggleMode = 'Regresar a modo de edición';
+    } else {
+      this.btnTextToggleMode = 'Ver como usuario';
+    }
   }
 
 }

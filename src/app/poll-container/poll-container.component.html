@@ -1,15 +1,11 @@
 <div class="header">
   <div class="container">
-    <div>
-      <button (click)="addQuestionText()">Texto</button><span>({{ counterQuestionText }})</span>
+    <div class="row">
+      <div class="col-sm-12 col-md-3 text-center"><button class="btn-add-quest" (click)="addQuestionText()" *ngIf="!appMode.preview">Texto ({{ counterQuestionText }})</button></div>
+      <div class="col-sm-12 col-md-3 text-center"><button class="btn-add-quest" (click)="addQuestionCheckboxes()" *ngIf="!appMode.preview">Casillas ({{ counterQuestionCheckboxes }})</button></div>
+      <div class="col-sm-12 col-md-3 text-center"><button class="btn-add-quest" (click)="addQuestionSelect()" *ngIf="!appMode.preview">Desplegable ({{ counterQuestionSelect }})</button></div>
+      <div class="col-sm-12 col-md-3 text-center"><button class="btn-bg-img btn-toggle-mode" (click)="toggleAppMode()">{{ btnTextToggleMode }}</button></div>
     </div>
-    <div>
-      <button (click)="addQuestionRadiobuttons()">Casillas</button><span>({{ counterQuestionCheckboxes }})</span>
-    </div>
-    <div>
-      <button (click)="addQuestionSelect()">Desplegable</button><span>({{ counterQuestionSelect }})</span>
-    </div>
-    <button (click)="toggleAppMode()">PREVIEW</button>
   </div>
 </div>
 
@@ -30,13 +26,11 @@
 
 <app-modal-window modalWindowId="editPollTitleAndDesc" title="Editar el título de la encuesta">
   <div class="modal-body">
-    <input type="text" id="pollTitle" name="pollTitle" value="{{ pollTitle }}" placeholder="Escriba el título aquí"
-      #pollTitleInput>
-    <textarea name="poll-description" placeholder="Descripción de la encuesta" #pollDescInput>{{ pollDescription }}</textarea>
+    <input type="text" id="pollTitle" name="pollTitle" value="{{ pollTitle }}" class="form-control" placeholder="Escribe el título aquí" #pollTitleInput>
+    <textarea name="poll-description" placeholder="Descripción de la encuesta" class="form-control" #pollDescInput>{{ pollDescription }}</textarea>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)="editPollTitleAndDescription(pollTitleInput.value, pollDescInput.value)">Guardar
-      cambios</button>
+    <button type="button" class="btn btn-primary" (click)="editPollTitleAndDescription(pollTitleInput.value, pollDescInput.value)">Guardar cambios</button>
   </div>
 </app-modal-window>
