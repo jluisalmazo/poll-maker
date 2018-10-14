@@ -10,6 +10,7 @@ import 'bootstrap/js/dist/modal';
 })
 export class QuestionOptionsComponent {
 
+  @Input('type') type: string;
   @Input('optionsModalId') optionsModalId: string;
   @Input('deleteOptionModalId') deleteOptionModalId: string;
   @Input('options') options;

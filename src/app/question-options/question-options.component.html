@@ -1,7 +1,9 @@
 <div class="option admin-buttons" *ngFor="let option of options">
-  <div class="input-wrapper">
-    <input type="checkbox" name="option" value="{{ option.id }}"><span>{{ option.label }}</span>
+  <div *ngIf="type === 'checkboxes'">
+    <input type="checkbox" name="option" value="{{ option.id }}">
   </div>
+  <div *ngIf="type === 'checkboxes'">{{ option.label }}</div>
+  <div *ngIf="type === 'select'"><li>{{ option.label }}</li></div>
   <div class="buttons" *ngIf="!appMode.preview">
     <button class="btn-bg-img btn-edit" (click)="showModalRadioButton(option.id, option.label)"></button>
     <button class="btn-bg-img btn-delete" (click)="showModalDeleteOption(option.id, option.label)"></button>
@@ -16,8 +18,7 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
     <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)" *ngIf="editMode">Guardar cambios</button>
-    <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar
-      opci&oacute;n</button>
+    <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar opci&oacute;n</button>
   </div>
 </app-modal-window>
 

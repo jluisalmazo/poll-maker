@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
     <div class="question admin-buttons">
-      <span>{{ question }}</span>
+      <div class="question-text"  [ngClass]="{ 'design-mode': !appMode.preview }">{{ question }}</div>
       <div class="buttons" *ngIf="!appMode.preview">
         <button class="btn-bg-img btn-edit" (click)="showModalEditQuestion()"></button>
         <button class="btn-bg-img btn-delete" (click)="showModalRemoveQuestion()"></button>
@@ -16,7 +16,7 @@
   <div class="col-12" *ngIf="!appMode.preview">
     <div class="admin-options">
       <div class="section-name">Administra aqu&iacute; las opciones del desplegable:</div>
-      <app-question-options [optionsModalId]="optionsModalId" [deleteOptionModalId]="deleteOptionModalId" [options]="options"></app-question-options>
+      <app-question-options type="select" [optionsModalId]="optionsModalId" [deleteOptionModalId]="deleteOptionModalId" [options]="options"></app-question-options>
     </div>
   </div>
 

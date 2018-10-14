@@ -28,6 +28,7 @@ export class QuestionCheckboxesComponent {
   public compInteraction: myinterface;   // interface for Parent-Child interaction.
 
   // Component's general variables
+  public questionType = "checkboxes";
   public question = 'Texto de la pregunta';
 
   options = [

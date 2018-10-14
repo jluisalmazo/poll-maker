@@ -58,19 +58,19 @@ body {
     cursor: pointer;
   }
 
-  
+
   /* Buttons for question and options */
 
   .admin-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+
     .buttons {
       display: none;
       margin-left: 25px;
-    }
-
-    &:hover>.buttons {
-      display: inline-flex;
-      margin-top: -3px;
-      position: absolute;
+      // Hack
+      margin-bottom: -15px;
 
       .btn-edit,
       .btn-delete {
@@ -78,7 +78,30 @@ body {
         height: 35px;
       }
     }
+
+    &:hover > .buttons {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-start;
+    }
   }
+
+  /* Styles for questions text */
+
+  .question {
+    font-size: get-rem(_18px);
+    font-weight: lighter;
+    margin-bottom: 30px;
+
+    div.question-text {
+      padding-bottom: 8px;
+  
+      &.design-mode {
+        border-bottom: 1px solid get-color(primary-color-5);
+      }
+    }
+  }
+
 
   /* Responsive styles */
 

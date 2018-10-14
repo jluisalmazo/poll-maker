@@ -4,17 +4,6 @@
   display: block;
   margin-bottom: $questions-margin-bottom;
 
-  .question {
-    font-size: get-rem(_18px);
-    font-weight: lighter;
-    margin-bottom: 30px;
-
-    span {
-      padding-bottom: 8px;
-      border-bottom: 1px solid get-color(primary-color-5);
-    }
-  }
-
   .admin-options {
     margin-top: 20px;
     padding: 20px;
