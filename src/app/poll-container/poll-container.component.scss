@@ -60,30 +60,6 @@
     }
   }
 
-  & ::ng-deep {
-
-    .modal {
-      .modal-dialog {
-        .modal-content {
-          .modal-header {
-            .modal-title {
-              font-size: get-rem(_28px);
-              font-weight: normal;
-              color: get-color(primary-color-1);
-            }
-          }
-          .modal-body {
-            input,
-            textarea {
-              margin-bottom: 20px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-
   /* Responsive styles */
 
   @include media-breakpoint-down(md) {

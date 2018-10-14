@@ -1,0 +1,32 @@
+<div class="option admin-buttons" *ngFor="let option of options">
+  <div class="input-wrapper">
+    <input type="checkbox" name="option" value="{{ option.id }}"><span>{{ option.label }}</span>
+  </div>
+  <div class="buttons" *ngIf="!appMode.preview">
+    <button class="btn-bg-img btn-edit" (click)="showModalRadioButton(option.id, option.label)"></button>
+    <button class="btn-bg-img btn-delete" (click)="showModalDeleteOption(option.id, option.label)"></button>
+  </div>
+</div>
+<button class="btn-bg-img btn-add" (click)="showModalRadioButton()" *ngIf="!appMode.preview"></button>
+
+<app-modal-window modalWindowId="{{ optionsModalId }}" title="{{ optionsModalTitle }}">
+  <div class="modal-body">
+    <input type="text" name="radiobutton-label" value="{{ optionLabel }}" id="{{ optionId }}" class="form-control" placeholder="Nombre de la opción" #radiobuttonLabel>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="editRadiobutton(radiobuttonLabel.id, radiobuttonLabel.value)" *ngIf="editMode">Guardar cambios</button>
+    <button type="button" class="btn btn-primary" (click)="addRadiobutton(radiobuttonLabel.value)" *ngIf="addMode">Agregar
+      opci&oacute;n</button>
+  </div>
+</app-modal-window>
+
+<app-modal-window modalWindowId="{{ deleteOptionModalId }}" title="¿Estás segur@ que deseas eliminar esta opción?">
+  <div class="modal-body">
+    {{ optionLabel }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)="deleteOption(optionId)">Eliminar opci&oacute;n</button>
+  </div>
+</app-modal-window>

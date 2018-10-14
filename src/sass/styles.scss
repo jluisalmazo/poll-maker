@@ -58,6 +58,27 @@ body {
     cursor: pointer;
   }
 
+  
+  /* Buttons for question and options */
+
+  .admin-buttons {
+    .buttons {
+      display: none;
+      margin-left: 25px;
+    }
+
+    &:hover>.buttons {
+      display: inline-flex;
+      margin-top: -3px;
+      position: absolute;
+
+      .btn-edit,
+      .btn-delete {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
 
   /* Responsive styles */
 

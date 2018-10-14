@@ -14,23 +14,4 @@
       border-bottom: 1px solid get-color(primary-color-5);
     }
   }
-
-  .admin-buttons {
-    .buttons {
-      display: none;
-      margin-left: 25px;
-    }
-
-    &:hover>.buttons {
-      display: inline-flex;
-      margin-top: -3px;
-      position: absolute;
-
-      .btn-edit,
-      .btn-delete {
-        width: 35px;
-        height: 35px;
-      }
-    }
-  }
 }
