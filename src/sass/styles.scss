@@ -58,36 +58,31 @@ body {
     cursor: pointer;
   }
 
-  
-  /* Modal Window */
 
-  :host {
-    .container ::ng-deep {
+  /* Responsive styles */
 
-      .modal {
-        .modal-dialog {
-          .modal-content {
-  
-            .modal-header {
-              .modal-title {
-                font-size: get-rem(_28px);
-                font-weight: normal;
-                color: get-color(primary-color-1);
-              }
-            }
-  
-            .modal-body {
-  
-              input,
-              textarea {
-                width: 100%;
-                margin-bottom: 20px;
-              }
-            }
-          }
-        }
-      }
+  @include media-breakpoint-down(md) {
+
+    .btn-add-quest {
+      font-size: get-rem(_18px) !important;
     }
+
+    .btn-toggle-mode {
+      font-size: get-rem(_14px) !important;
+    }
+
+  }
+
+  @include media-breakpoint-down(sm) {
+
+    .btn-add-quest{
+      margin-top: 8px !important;
+    }
+    
+    .btn-toggle-mode {
+      margin-top: 20px !important;
+    }
+
   }
 
 }

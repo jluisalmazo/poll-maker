@@ -1,10 +1,19 @@
 <div class="header">
   <div class="container">
+    <div class=header-top-padding *ngIf="!appMode.preview"></div>
     <div class="row">
-      <div class="col-sm-12 col-md-3 text-center"><button class="btn-add-quest" (click)="addQuestionText()" *ngIf="!appMode.preview">Texto ({{ counterQuestionText }})</button></div>
-      <div class="col-sm-12 col-md-3 text-center"><button class="btn-add-quest" (click)="addQuestionCheckboxes()" *ngIf="!appMode.preview">Casillas ({{ counterQuestionCheckboxes }})</button></div>
-      <div class="col-sm-12 col-md-3 text-center"><button class="btn-add-quest" (click)="addQuestionSelect()" *ngIf="!appMode.preview">Desplegable ({{ counterQuestionSelect }})</button></div>
-      <div class="col-sm-12 col-md-3 text-center"><button class="btn-bg-img btn-toggle-mode" (click)="toggleAppMode()">{{ btnTextToggleMode }}</button></div>
+      <div class="col-sm-12 col-md-2 col-lg-3 text-center top-menu">
+        <button class="btn-add-quest" (click)="addQuestionText()" *ngIf="!appMode.preview">Texto ({{ counterQuestionText }})</button>
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3 text-center top-menu">
+        <button class="btn-add-quest" (click)="addQuestionCheckboxes()" *ngIf="!appMode.preview">Casillas ({{ counterQuestionCheckboxes }})</button>
+      </div>
+      <div class="col-sm-12 col-md-3 col-lg-3 text-center top-menu">
+        <button class="btn-add-quest" (click)="addQuestionSelect()" *ngIf="!appMode.preview">Desplegable ({{ counterQuestionSelect }})</button>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-3 text-center top-menu">
+        <button class="btn-bg-img btn-toggle-mode" (click)="toggleAppMode()">{{ btnTextToggleMode }}</button>
+      </div>
     </div>
   </div>
 </div>

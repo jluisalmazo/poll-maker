@@ -4,9 +4,18 @@
   display: block;
 
   .header {
-    padding-top: 80px;
+    padding-top: 20px;
     padding-bottom: 150px;
     background-color: get-color(primary-color-1);
+
+    .header-top-padding{
+      height: 80px;
+    }
+
+    .top-menu{
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   .container {
@@ -70,6 +79,27 @@
             }
           }
         }
+      }
+    }
+  }
+
+
+  /* Responsive styles */
+
+  @include media-breakpoint-down(md) {
+
+    .header {
+      .header-top-padding{
+        height: 30px;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+
+    .header {
+      .header-top-padding{
+        display: none;
       }
     }
   }
