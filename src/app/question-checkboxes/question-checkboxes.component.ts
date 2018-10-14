@@ -16,8 +16,8 @@ export interface myinterface {
 export class QuestionCheckboxesComponent implements OnInit {
 
   options = [
-    { id: 1, label: 'Opción ejemplo 1' },
-    { id: 2, label: 'Opción ejemplo 2' }
+    { id: 1, label: 'Opción de ejemplo 1' },
+    { id: 2, label: 'Opción de ejemplo 2' }
   ];
 
   // These parameters are passed when the component is dinamically built.

@@ -22,6 +22,7 @@ import { ModeService } from './mode.service';
   entryComponents: [
     QuestionComponent,
     QuestionCheckboxesComponent,
+    QuestionSelectComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { QuestionComponent } from '../question/question.component';
 import { QuestionCheckboxesComponent } from '../question-checkboxes/question-checkboxes.component';
+import { QuestionSelectComponent } from '../question-select/question-select.component';
+import { ModeService } from '../mode.service';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
-import { AppModule } from '../app.module';
-import { ModeService } from '../mode.service';
 
 
 @Component({
@@ -26,8 +26,8 @@ export class PollContainerComponent implements OnInit {
 
   public pollTitle = 'Título de la encuesta';
   public pollDescription = 'Descripción de la encuesta';
-  public numQuestionRadiobuttons = 0;
-
+  public numQuestionCheckboxes = 0;
+  public numQuestionSelect = 0;
 
   constructor(private resolver: ComponentFactoryResolver, private appMode: ModeService) { }
 
@@ -55,15 +55,37 @@ export class PollContainerComponent implements OnInit {
 
   addQuestionRadiobuttons() {
 
-    this.numQuestionRadiobuttons++;
+    this.numQuestionCheckboxes++;
 
     let factory = this.resolver.resolveComponentFactory(QuestionCheckboxesComponent);
     let component: ComponentRef<QuestionCheckboxesComponent> = this.questionsContainer.createComponent(factory);
 
-    component.instance.questionModalId = "questionModal-" + this.numQuestionRadiobuttons;
-    component.instance.optionsModalId = "optionsModal-" + this.numQuestionRadiobuttons;
-    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.numQuestionRadiobuttons;
-    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.numQuestionRadiobuttons;
+    component.instance.questionModalId = "questionModal-" + this.numQuestionCheckboxes;
+    component.instance.optionsModalId = "optionsModal-" + this.numQuestionCheckboxes;
+    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.numQuestionCheckboxes;
+    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.numQuestionCheckboxes;
+
+    component.instance.selfRef = component.instance;
+    component.instance.index = ++this.index;
+
+    // Providing parent Component reference to get access to parent class methods
+    component.instance.compInteraction = this;
+
+    // Add reference for newly created component
+    this.componentsReferences.push(component);
+  }
+
+  addQuestionSelect() {
+
+    this.numQuestionSelect++;
+
+    let factory = this.resolver.resolveComponentFactory(QuestionSelectComponent);
+    let component: ComponentRef<QuestionSelectComponent> = this.questionsContainer.createComponent(factory);
+
+    component.instance.questionModalId = "questionModal-" + this.numQuestionSelect;
+    component.instance.optionsModalId = "optionsModal-" + this.numQuestionSelect;
+    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.numQuestionSelect;
+    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.numQuestionSelect;
 
     component.instance.selfRef = component.instance;
     component.instance.index = ++this.index;
@@ -82,7 +104,22 @@ export class PollContainerComponent implements OnInit {
     }
 
     let componentRef = this.componentsReferences.filter(x => x.instance.index == index)[0];
-    let component: QuestionCheckboxesComponent = <QuestionCheckboxesComponent>componentRef.instance;
+
+    // if(componentRef.instance instanceof QuestionCheckboxesComponent){
+    //   alert("acabo de eliminar un componente del tipo checkboxes");
+    // }
+
+    // Drecreasing counter for type of question.
+    switch(componentRef.instance.constructor){
+      
+      case QuestionCheckboxesComponent:
+        this.numQuestionCheckboxes--;
+        break;
+
+      case QuestionSelectComponent:
+      this.numQuestionSelect--;
+        break;
+    }
 
     let vcrIndex: number = this.questionsContainer.indexOf(componentRef)
 
@@ -91,12 +128,6 @@ export class PollContainerComponent implements OnInit {
 
     this.componentsReferences = this.componentsReferences.filter(x => x.instance.index !== index);
   }
-
-  displayAllContent(){
-    // console.log(this);
-    console.log(this.componentsReferences);
-  }
-
 
   /**
    * Changes the mode of the webapp from design to preview an viceversa.
