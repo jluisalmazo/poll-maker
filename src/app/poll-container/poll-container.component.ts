@@ -30,7 +30,7 @@ export class PollContainerComponent {
   public counterQuestionSelect = 0;
   public btnTextToggleMode = 'Ver como usuario';
 
-  constructor(private resolver: ComponentFactoryResolver, private appMode: ModeService) { }
+  constructor(private resolver: ComponentFactoryResolver, public appMode: ModeService) { }
 
   showModalEditTitle() {
 

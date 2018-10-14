@@ -28,7 +28,7 @@ export class QuestionTextComponent {
   // Component's general variables.
   public question = 'Texto de la pregunta';
 
-  constructor(private readonly appMode: ModeService) { }
+  constructor(public appMode: ModeService) { }
 
   showModalEditQuestion() {
 

@@ -35,7 +35,7 @@ export class QuestionSelectComponent {
     { id: 2, label: 'Opción de ejemplo 2' }
   ];
 
-  constructor(private readonly appMode: ModeService) {}
+  constructor(public appMode: ModeService) {}
   
   showModalEditQuestion() {
 

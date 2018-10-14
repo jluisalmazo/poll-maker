@@ -21,7 +21,7 @@ export class QuestionOptionsComponent {
   public optionId = '';
   public optionLabel = '';
 
-  constructor(private readonly appMode: ModeService) { }
+  constructor(public appMode: ModeService) { }
 
   showModalRadioButton(id?: string, label?: string) {
 
