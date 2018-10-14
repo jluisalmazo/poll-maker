@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import { QuestionComponent } from '../question/question.component';
+import { QuestionTextComponent } from '../question-text/question-text.component';
 import { QuestionCheckboxesComponent } from '../question-checkboxes/question-checkboxes.component';
 import { QuestionSelectComponent } from '../question-select/question-select.component';
 import { ModeService } from '../mode.service';
@@ -26,8 +26,9 @@ export class PollContainerComponent implements OnInit {
 
   public pollTitle = 'Título de la encuesta';
   public pollDescription = 'Descripción de la encuesta';
-  public numQuestionCheckboxes = 0;
-  public numQuestionSelect = 0;
+  public counterQuestionText = 0
+  public counterQuestionCheckboxes = 0;
+  public counterQuestionSelect = 0;
 
   constructor(private resolver: ComponentFactoryResolver, private appMode: ModeService) { }
 
@@ -49,21 +50,36 @@ export class PollContainerComponent implements OnInit {
 
   addQuestionText() {
 
-    const factory = this.resolver.resolveComponentFactory(QuestionComponent);
-    this.questionsContainer.createComponent(factory);
+    this.counterQuestionText++;
+
+    const factory = this.resolver.resolveComponentFactory(QuestionTextComponent);    
+    const component: ComponentRef<QuestionTextComponent> = this.questionsContainer.createComponent(factory);
+
+    component.instance.questionModalId = "questionModal-" + this.counterQuestionText;
+    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.counterQuestionText;
+
+    component.instance.selfRef = component.instance;
+    component.instance.index = ++this.index;
+
+    // Providing parent Component reference to get access to parent class methods
+    component.instance.compInteraction = this;
+
+    // Add reference for newly created component
+    this.componentsReferences.push(component);
+
   }
 
   addQuestionRadiobuttons() {
 
-    this.numQuestionCheckboxes++;
+    this.counterQuestionCheckboxes++;
 
-    let factory = this.resolver.resolveComponentFactory(QuestionCheckboxesComponent);
-    let component: ComponentRef<QuestionCheckboxesComponent> = this.questionsContainer.createComponent(factory);
+    const factory = this.resolver.resolveComponentFactory(QuestionCheckboxesComponent);
+    const component: ComponentRef<QuestionCheckboxesComponent> = this.questionsContainer.createComponent(factory);
 
-    component.instance.questionModalId = "questionModal-" + this.numQuestionCheckboxes;
-    component.instance.optionsModalId = "optionsModal-" + this.numQuestionCheckboxes;
-    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.numQuestionCheckboxes;
-    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.numQuestionCheckboxes;
+    component.instance.questionModalId = "questionModal-" + this.counterQuestionCheckboxes;
+    component.instance.optionsModalId = "optionsModal-" + this.counterQuestionCheckboxes;
+    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.counterQuestionCheckboxes;
+    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.counterQuestionCheckboxes;
 
     component.instance.selfRef = component.instance;
     component.instance.index = ++this.index;
@@ -77,15 +93,15 @@ export class PollContainerComponent implements OnInit {
 
   addQuestionSelect() {
 
-    this.numQuestionSelect++;
+    this.counterQuestionSelect++;
 
-    let factory = this.resolver.resolveComponentFactory(QuestionSelectComponent);
-    let component: ComponentRef<QuestionSelectComponent> = this.questionsContainer.createComponent(factory);
+    const factory = this.resolver.resolveComponentFactory(QuestionSelectComponent);
+    const component: ComponentRef<QuestionSelectComponent> = this.questionsContainer.createComponent(factory);
 
-    component.instance.questionModalId = "questionModal-" + this.numQuestionSelect;
-    component.instance.optionsModalId = "optionsModal-" + this.numQuestionSelect;
-    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.numQuestionSelect;
-    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.numQuestionSelect;
+    component.instance.questionModalId = "questionModal-" + this.counterQuestionSelect;
+    component.instance.optionsModalId = "optionsModal-" + this.counterQuestionSelect;
+    component.instance.deleteOptionModalId = "deleteOptionModal-" + this.counterQuestionSelect;
+    component.instance.removeQuestionModalId = "removeQuestionModal-" + this.counterQuestionSelect;
 
     component.instance.selfRef = component.instance;
     component.instance.index = ++this.index;
@@ -112,12 +128,16 @@ export class PollContainerComponent implements OnInit {
     // Drecreasing counter for type of question.
     switch(componentRef.instance.constructor){
       
+      case QuestionTextComponent:
+        this.counterQuestionText--;
+        break;
+
       case QuestionCheckboxesComponent:
-        this.numQuestionCheckboxes--;
+        this.counterQuestionCheckboxes--;
         break;
 
       case QuestionSelectComponent:
-      this.numQuestionSelect--;
+      this.counterQuestionSelect--;
         break;
     }
 

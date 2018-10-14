@@ -1,13 +1,13 @@
 <div class="header">
   <div class="container">
     <div>
-      <button (click)="addQuestionText()">Texto</button><span>({{ numQuestionCheckboxes }})</span>
+      <button (click)="addQuestionText()">Texto</button><span>({{ counterQuestionText }})</span>
     </div>
     <div>
-      <button (click)="addQuestionRadiobuttons()">Casillas</button><span>({{ numQuestionCheckboxes }})</span>
+      <button (click)="addQuestionRadiobuttons()">Casillas</button><span>({{ counterQuestionCheckboxes }})</span>
     </div>
     <div>
-      <button (click)="addQuestionSelect()">Desplegable</button><span>({{ numQuestionSelect }})</span>
+      <button (click)="addQuestionSelect()">Desplegable</button><span>({{ counterQuestionSelect }})</span>
     </div>
     <button (click)="toggleAppMode()">PREVIEW</button>
   </div>

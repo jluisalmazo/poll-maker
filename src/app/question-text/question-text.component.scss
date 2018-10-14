@@ -1,0 +1,36 @@
+@import '../../sass/styles';
+
+:host {
+  display: block;
+  margin-bottom: $questions-margin-bottom;
+
+  .question {
+    font-size: get-rem(_18px);
+    font-weight: lighter;
+    margin-bottom: 30px;
+
+    span {
+      padding-bottom: 8px;
+      border-bottom: 1px solid get-color(primary-color-5);
+    }
+  }
+
+  .admin-buttons {
+    .buttons {
+      display: none;
+      margin-left: 25px;
+    }
+
+    &:hover>.buttons {
+      display: inline-flex;
+      margin-top: -3px;
+      position: absolute;
+
+      .btn-edit,
+      .btn-delete {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}

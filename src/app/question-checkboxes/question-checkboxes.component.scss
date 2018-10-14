@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: $questions-margin-bottom;
 
   .input-wrapper {
     display: inline-flex;

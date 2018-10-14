@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  margin-bottom: 40px;
+  margin-bottom: $questions-margin-bottom;
 
   .input-wrapper {
     display: inline-flex;
@@ -54,8 +54,8 @@
     border: 1px dotted get-color(primary-color-5);
 
     .section-name {
-        margin-bottom: 20px;
-        color: get-color(primary-color-1);
+      margin-bottom: 20px;
+      color: get-color(primary-color-1);
     }
 
     @at-root .admin-buttons {

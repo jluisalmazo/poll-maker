@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModeService } from '../mode.service';
 import * as $ from 'jquery';
 import 'bootstrap/js/dist/modal';
@@ -14,12 +14,7 @@ export interface myinterface {
   styleUrls: ['./question-select.component.scss']
 })
 
-export class QuestionSelectComponent implements OnInit {
-
-  options = [
-    { id: 1, label: 'Opción de ejemplo 1' },
-    { id: 2, label: 'Opción de ejemplo 2' }
-  ];
+export class QuestionSelectComponent {
 
   // These parameters are passed when the component is dinamically built.
   public questionModalId = '';
@@ -27,6 +22,12 @@ export class QuestionSelectComponent implements OnInit {
   public deleteOptionModalId = '';
   public removeQuestionModalId = '';
 
+  // This variables are for removing the instance of this component.
+  public index: number;
+  public selfRef: QuestionSelectComponent;
+  public compInteraction: myinterface;   // interface for Parent-Child interaction.
+
+  // Component's general variables.
   public question = 'Texto de la pregunta';
   public optionsModalTitle = '';
   public editMode = false;
@@ -34,15 +35,12 @@ export class QuestionSelectComponent implements OnInit {
   public optionId = '';
   public optionLabel = '';
 
-  // This parameters are for removing the instance of this component.
-  public index: number;
-  public selfRef: QuestionSelectComponent;
-  public compInteraction: myinterface;   // interface for Parent-Child interaction.
-  
+  options = [
+    { id: 1, label: 'Opción de ejemplo 1' },
+    { id: 2, label: 'Opción de ejemplo 2' }
+  ];
 
   constructor(private readonly appMode: ModeService) {}
-
-  ngOnInit() {}
   
   showModalRadioButton(id?: string, label?: string) {
 
@@ -126,7 +124,7 @@ export class QuestionSelectComponent implements OnInit {
     $('#' + this.removeQuestionModalId).modal('show');
   }
 
-  removeMe(index) {
+  removeThisQuestion(index) {
 
     $('#' + this.removeQuestionModalId).modal('hide');
     this.compInteraction.removeInstance(index);
