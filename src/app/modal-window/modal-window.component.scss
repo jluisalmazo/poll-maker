@@ -3,26 +3,29 @@
 :host {
   display: block;
 
-  .modal {
-    .modal-dialog {
-      .modal-content {
-        .modal-header {
-          .modal-title {
-            font-size: get-rem(_28px);
-            font-weight: normal;
-            color: get-color(primary-color-1);
+  & ::ng-deep {
+
+    .modal {
+      .modal-dialog {
+        .modal-content {
+          .modal-header {
+            .modal-title {
+              font-size: get-rem(_28px);
+              font-weight: normal;
+              color: get-color(primary-color-1);
+            }
           }
-        }
 
-        .modal-body {
+          .modal-body {
 
-          input,
-          textarea {
-            margin-bottom: 20px;
+            input,
+            textarea {
+              margin-bottom: 20px;
+            }
           }
         }
       }
     }
   }
-
 }
+
